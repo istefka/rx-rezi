@@ -1,11 +1,8 @@
-import type { Icon } from "@phosphor-icons/react";
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
-import { GithubLogoIcon, LinkedinLogoIcon, XLogoIcon } from "@phosphor-icons/react";
 import { m } from "motion/react";
 import { useState } from "react";
 import { BrandIcon } from "@reactive-resume/ui/components/brand-icon";
-import { Button } from "@reactive-resume/ui/components/button";
 import { Copyright } from "@/components/ui/copyright";
 
 type FooterLinkItem = {
@@ -18,30 +15,10 @@ type FooterLinkGroupProps = {
 	links: FooterLinkItem[];
 };
 
-type SocialLink = {
-	url: string;
-	label: string;
-	icon: Icon;
-};
-
 const getResourceLinks = (): FooterLinkItem[] => [
-	{ url: "https://docs.rxresu.me", label: t`Documentation` },
-	{ url: "https://opencollective.com/reactive-resume/donate", label: t`Sponsorships` },
-	{ url: "https://github.com/amruthpillai/reactive-resume", label: t`Source Code` },
-	{ url: "https://docs.rxresu.me/changelog", label: t`Changelog` },
-];
-
-const getCommunityLinks = (): FooterLinkItem[] => [
-	{ url: "https://github.com/amruthpillai/reactive-resume/issues", label: t`Report an issue` },
-	{ url: "https://crowdin.com/project/reactive-resume", label: t`Translations` },
-	{ url: "https://reddit.com/r/reactiveresume", label: t`Subreddit` },
-	{ url: "https://discord.gg/aSyA5ZSxpb", label: t`Discord` },
-];
-
-const socialLinks: SocialLink[] = [
-	{ url: "https://github.com/amruthpillai/reactive-resume", label: t`GitHub`, icon: GithubLogoIcon },
-	{ url: "https://linkedin.com/in/amruthpillai", label: t`LinkedIn`, icon: LinkedinLogoIcon },
-	{ url: "https://x.com/KingOKings", label: t`X (Twitter)`, icon: XLogoIcon },
+	{ url: "https://hirete.eu/docs", label: t`Documentation` },
+	{ url: "/privacy", label: t`Privacy Policy` },
+	{ url: "/terms", label: t`Terms of Service` },
 ];
 
 export function Footer() {
@@ -60,7 +37,7 @@ export function Footer() {
 					<BrandIcon variant="logo" className="size-10" />
 
 					<div className="space-y-2">
-						<h2 className="font-semibold text-lg tracking-tight">Reactive Resume</h2>
+						<h2 className="font-semibold text-lg tracking-tight">Hirete</h2>
 						<p className="max-w-xs text-muted-foreground text-sm leading-relaxed">
 							<Trans>
 								A free and open-source resume builder that simplifies the process of creating, updating, and sharing
@@ -68,35 +45,10 @@ export function Footer() {
 							</Trans>
 						</p>
 					</div>
-
-					{/* Social Links */}
-					<div className="flex items-center gap-2 pt-2">
-						{socialLinks.map((social) => (
-							<Button
-								key={social.label}
-								size="icon-sm"
-								variant="ghost"
-								nativeButton={false}
-								render={
-									<a
-										href={social.url}
-										target="_blank"
-										rel="noopener noreferrer"
-										aria-label={`${social.label} (${t`opens in new tab`})`}
-									>
-										<social.icon aria-hidden="true" size={18} />
-									</a>
-								}
-							/>
-						))}
-					</div>
 				</div>
 
 				{/* Resources Column */}
 				<FooterLinkGroup title={t`Resources`} links={getResourceLinks()} />
-
-				{/* Community Column */}
-				<FooterLinkGroup title={t`Community`} links={getCommunityLinks()} />
 
 				{/* Copyright Column */}
 				<div className="space-y-4 sm:col-span-2 lg:col-span-1">
@@ -123,22 +75,24 @@ function FooterLinkGroup({ title, links }: FooterLinkGroupProps) {
 
 function FooterLink({ url, label }: FooterLinkItem) {
 	const [isHovered, setIsHovered] = useState(false);
+	const isInternal = url.startsWith("/");
 
 	return (
 		<li className="relative">
 			<a
 				href={url}
-				target="_blank"
-				rel="noopener noreferrer"
+				{...(isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" })}
 				className="relative inline-block text-sm transition-colors hover:text-foreground"
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
 				{label}
 
-				<span className="sr-only">
-					<Trans>(opens in new tab)</Trans>
-				</span>
+				{!isInternal && (
+					<span className="sr-only">
+						<Trans>(opens in new tab)</Trans>
+					</span>
+				)}
 
 				<m.div
 					aria-hidden="true"

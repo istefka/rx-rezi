@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from "./routes/__root";
+import { Route as TermsRouteImport } from "./routes/terms";
+import { Route as PrivacyRouteImport } from "./routes/privacy";
 import { Route as DashboardRouteRouteImport } from "./routes/dashboard/route";
 import { Route as AuthRouteRouteImport } from "./routes/auth/route";
 import { Route as AgentRouteRouteImport } from "./routes/agent/route";
@@ -40,6 +42,16 @@ import { Route as DashboardSettingsApiKeysRouteImport } from "./routes/dashboard
 import { Route as DashboardSettingsIntegrationsRouteRouteImport } from "./routes/dashboard/settings/integrations/route";
 import { Route as DashboardSettingsAuthenticationIndexRouteImport } from "./routes/dashboard/settings/authentication/index";
 
+const TermsRoute = TermsRouteImport.update({
+  id: "/terms",
+  path: "/terms",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: "/privacy",
+  path: "/privacy",
+  getParentRoute: () => rootRouteImport,
+} as any);
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: "/dashboard",
   path: "/dashboard",
@@ -203,6 +215,8 @@ export interface FileRoutesByFullPath {
   "/agent": typeof AgentRouteRouteWithChildren;
   "/auth": typeof AuthRouteRouteWithChildren;
   "/dashboard": typeof DashboardRouteRouteWithChildren;
+  "/privacy": typeof PrivacyRoute;
+  "/terms": typeof TermsRoute;
   "/builder/$resumeId": typeof BuilderResumeIdRouteRouteWithChildren;
   "/$username/$slug": typeof UsernameSlugRoute;
   "/agent/$threadId": typeof AgentThreadIdRoute;
@@ -230,6 +244,8 @@ export interface FileRoutesByFullPath {
   "/dashboard/settings/authentication/": typeof DashboardSettingsAuthenticationIndexRoute;
 }
 export interface FileRoutesByTo {
+  "/privacy": typeof PrivacyRoute;
+  "/terms": typeof TermsRoute;
   "/$username/$slug": typeof UsernameSlugRoute;
   "/agent/$threadId": typeof AgentThreadIdRoute;
   "/agent/new": typeof AgentNewRoute;
@@ -262,6 +278,8 @@ export interface FileRoutesById {
   "/agent": typeof AgentRouteRouteWithChildren;
   "/auth": typeof AuthRouteRouteWithChildren;
   "/dashboard": typeof DashboardRouteRouteWithChildren;
+  "/privacy": typeof PrivacyRoute;
+  "/terms": typeof TermsRoute;
   "/builder/$resumeId": typeof BuilderResumeIdRouteRouteWithChildren;
   "/$username/$slug": typeof UsernameSlugRoute;
   "/agent/$threadId": typeof AgentThreadIdRoute;
@@ -296,6 +314,8 @@ export interface FileRouteTypes {
     | "/agent"
     | "/auth"
     | "/dashboard"
+    | "/privacy"
+    | "/terms"
     | "/builder/$resumeId"
     | "/$username/$slug"
     | "/agent/$threadId"
@@ -323,6 +343,8 @@ export interface FileRouteTypes {
     | "/dashboard/settings/authentication/";
   fileRoutesByTo: FileRoutesByTo;
   to:
+    | "/privacy"
+    | "/terms"
     | "/$username/$slug"
     | "/agent/$threadId"
     | "/agent/new"
@@ -354,6 +376,8 @@ export interface FileRouteTypes {
     | "/agent"
     | "/auth"
     | "/dashboard"
+    | "/privacy"
+    | "/terms"
     | "/builder/$resumeId"
     | "/$username/$slug"
     | "/agent/$threadId"
@@ -387,6 +411,8 @@ export interface RootRouteChildren {
   AgentRouteRoute: typeof AgentRouteRouteWithChildren;
   AuthRouteRoute: typeof AuthRouteRouteWithChildren;
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren;
+  PrivacyRoute: typeof PrivacyRoute;
+  TermsRoute: typeof TermsRoute;
   BuilderResumeIdRouteRoute: typeof BuilderResumeIdRouteRouteWithChildren;
   UsernameSlugRoute: typeof UsernameSlugRoute;
   TemplatesSplatRoute: typeof TemplatesSplatRoute;
@@ -394,6 +420,20 @@ export interface RootRouteChildren {
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
+    "/terms": {
+      id: "/terms";
+      path: "/terms";
+      fullPath: "/terms";
+      preLoaderRoute: typeof TermsRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/privacy": {
+      id: "/privacy";
+      path: "/privacy";
+      fullPath: "/privacy";
+      preLoaderRoute: typeof PrivacyRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     "/dashboard": {
       id: "/dashboard";
       path: "/dashboard";
@@ -709,6 +749,8 @@ const rootRouteChildren: RootRouteChildren = {
   AgentRouteRoute: AgentRouteRouteWithChildren,
   AuthRouteRoute: AuthRouteRouteWithChildren,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   BuilderResumeIdRouteRoute: BuilderResumeIdRouteRouteWithChildren,
   UsernameSlugRoute: UsernameSlugRoute,
   TemplatesSplatRoute: TemplatesSplatRoute,

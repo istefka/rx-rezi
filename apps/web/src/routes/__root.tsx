@@ -40,16 +40,15 @@ type RouterContext = {
 	flags: FeatureFlags;
 };
 
-const appName = "Reactive Resume";
-const tagline = "A free and open-source resume builder";
+const appName = "Hirete";
+const tagline = "Smart CV builder for the European job market";
 const title = `${appName} — ${tagline}`;
-const description =
-	"Reactive Resume is a free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume.";
+const description = "Hirete — Smart CV builder for the European job market.";
 
 export const Route = createRootRouteWithContext<RouterContext>()({
 	component: RootComponent,
 	head: () => {
-		const appUrl = typeof window !== "undefined" ? window.location.origin : "https://rxresu.me";
+		const appUrl = typeof window !== "undefined" ? window.location.origin : "https://hirete.eu";
 
 		return {
 			links: [
@@ -66,11 +65,11 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				{ name: "description", content: description },
 				{ name: "viewport", content: "width=device-width, initial-scale=1" },
 				// Meta Tags
-				{ name: "theme-color", content: "#09090B" },
-				{ name: "application-name", content: "Reactive Resume" },
+				{ name: "theme-color", content: "#1A2B4A" },
+				{ name: "application-name", content: "Hirete" },
 				{ name: "mobile-web-app-capable", content: "yes" },
 				{ name: "apple-mobile-web-app-capable", content: "yes" },
-				{ name: "apple-mobile-web-app-title", content: "Reactive Resume" },
+				{ name: "apple-mobile-web-app-title", content: "Hirete" },
 				{ name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
 				// Twitter Tags
 				{ property: "twitter:image", content: `${appUrl}/opengraph/banner.jpg` },

@@ -12,7 +12,7 @@ describe("buildMcpServerCard", () => {
 
 	it("identifies the server as reactive-resume", () => {
 		expect(card.serverInfo.name).toBe("reactive-resume");
-		expect(card.serverInfo.title).toBe("Reactive Resume");
+		expect(card.serverInfo.title).toBe("Hirete");
 		expect(card.serverInfo.websiteUrl).toBe("https://rxresu.me");
 	});
 

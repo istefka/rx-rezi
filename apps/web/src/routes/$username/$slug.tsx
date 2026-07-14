@@ -19,10 +19,10 @@ export const Route = createFileRoute("/$username/$slug")({
 	},
 	head: ({ loaderData, params }) => {
 		const resume = loaderData?.resume;
-		const name = resume ? resume.data.basics.name || resume.name || "Resume" : "Reactive Resume";
+		const name = resume ? resume.data.basics.name || resume.name || "Resume" : "Hirete";
 
 		if (!resume) {
-			return { meta: [{ title: `${name} - Reactive Resume` }, createNoindexFollowMeta()] };
+			return { meta: [{ title: `${name} - Hirete` }, createNoindexFollowMeta()] };
 		}
 
 		const { basics, summary, metadata } = resume.data;
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/$username/$slug")({
 
 		return {
 			meta: [
-				{ title: `${name} - Reactive Resume` },
+				{ title: `${name} - Hirete` },
 				createNoindexFollowMeta(),
 				...createResumeSocialMeta({ canonicalUrl, title: socialTitle, description, imageUrl }),
 			],

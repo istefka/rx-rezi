@@ -3,39 +3,29 @@ import { describe, expect, it } from "vitest";
 import { BrandIcon } from "./brand-icon";
 
 describe("BrandIcon", () => {
-	it("renders two img elements (light + dark variants)", () => {
+	it("renders an inline svg brand mark", () => {
 		render(<BrandIcon />);
-		const imgs = screen.getAllByAltText("Reactive Resume");
-		expect(imgs).toHaveLength(2);
+		const mark = screen.getByRole("img", { name: "Hirete" });
+		expect(mark.tagName.toLowerCase()).toBe("svg");
 	});
 
-	it("uses 'logo' as default variant", () => {
+	it("uses 'logo' as default variant (label 'Hirete')", () => {
 		render(<BrandIcon />);
-		const imgs = screen.getAllByAltText("Reactive Resume");
-		expect(imgs.some((img) => img.getAttribute("src") === "/logo/dark.svg")).toBe(true);
-		expect(imgs.some((img) => img.getAttribute("src") === "/logo/light.svg")).toBe(true);
+		expect(screen.getByRole("img", { name: "Hirete" })).toBeInTheDocument();
 	});
 
-	it("uses 'icon' variant when specified", () => {
+	it("labels the 'icon' variant distinctly", () => {
 		render(<BrandIcon variant="icon" />);
-		const imgs = screen.getAllByAltText("Reactive Resume");
-		expect(imgs.some((img) => img.getAttribute("src") === "/icon/dark.svg")).toBe(true);
-		expect(imgs.some((img) => img.getAttribute("src") === "/icon/light.svg")).toBe(true);
+		expect(screen.getByRole("img", { name: "Hirete icon" })).toBeInTheDocument();
 	});
 
-	it("merges custom className on both imgs", () => {
+	it("merges custom className onto the svg", () => {
 		render(<BrandIcon className="my-custom" />);
-		const imgs = screen.getAllByAltText("Reactive Resume");
-		for (const img of imgs) {
-			expect(img).toHaveClass("my-custom");
-		}
+		expect(screen.getByRole("img", { name: "Hirete" })).toHaveClass("my-custom");
 	});
 
-	it("hides dark variant by default (light mode); dark mode reveals it via dark:block", () => {
+	it("defaults to the brand primary color via text-primary", () => {
 		render(<BrandIcon />);
-		const imgs = screen.getAllByAltText("Reactive Resume");
-		const darkImg = imgs.find((img) => img.getAttribute("src") === "/logo/dark.svg");
-		expect(darkImg).toHaveClass("hidden");
-		expect(darkImg).toHaveClass("dark:block");
+		expect(screen.getByRole("img", { name: "Hirete" })).toHaveClass("text-primary");
 	});
 });

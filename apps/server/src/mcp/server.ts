@@ -27,18 +27,18 @@ export async function createMcpServer(request: Request) {
 		{
 			name: "reactive-resume",
 			version: appVersion,
-			title: "Reactive Resume",
-			websiteUrl: "https://rxresu.me",
+			title: "Hirete",
+			websiteUrl: "https://hirete.eu",
 			description:
-				"Reactive Resume is a free and open-source resume builder. Use this MCP server to interact with your resume using an LLM of your choice.",
+				"Hirete is a free and open-source resume builder. Use this MCP server to interact with your resume using an LLM of your choice.",
 			icons: [
 				{
-					src: "https://rxresu.me/icon/light.svg",
+					src: "https://hirete.eu/icon/light.svg",
 					mimeType: "image/svg+xml",
 					theme: "light",
 				},
 				{
-					src: "https://rxresu.me/icon/dark.svg",
+					src: "https://hirete.eu/icon/dark.svg",
 					mimeType: "image/svg+xml",
 					theme: "dark",
 				},
@@ -46,7 +46,7 @@ export async function createMcpServer(request: Request) {
 		},
 		{
 			instructions: [
-				"You are connected to Reactive Resume over MCP.",
+				"You are connected to Hirete over MCP.",
 				"Authenticate with OAuth (recommended) or an API key (`x-api-key`).",
 				`Discover resume IDs with \`${MCP_TOOL_NAME.listResumes}\` (not \`resources/list\`).`,
 				`List distinct tags with \`${MCP_TOOL_NAME.listResumeTags}\`.`,

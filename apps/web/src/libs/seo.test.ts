@@ -53,12 +53,12 @@ describe("getRootStructuredData", () => {
 		expect(schemas).toHaveLength(4);
 		expect(schemas[0]).toMatchObject({
 			"@type": "WebSite",
-			name: "Reactive Resume",
+			name: "Hirete",
 			url: "https://rxresu.me/",
 		});
 		expect(schemas[1]).toMatchObject({
 			"@type": ["SoftwareApplication", "WebApplication"],
-			name: "Reactive Resume",
+			name: "Hirete",
 			applicationCategory: "BusinessApplication",
 			operatingSystem: "Web",
 			offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -67,7 +67,7 @@ describe("getRootStructuredData", () => {
 			"@type": "FAQPage",
 			mainEntity: expect.arrayContaining([
 				expect.objectContaining({
-					name: "Is Reactive Resume really free?",
+					name: "Is Hirete really free?",
 				}),
 			]),
 		});

@@ -18,8 +18,8 @@ export const Sponsors = ({ show }: SponsorsProps) => {
 				</h2>
 				<p className="mt-5 max-w-2xl text-base text-muted-foreground leading-relaxed">
 					<Trans>
-						Reactive Resume stays free, open-source, and independent because companies choose to support the work behind
-						it. Their sponsorship helps fund hosting, maintenance, and continued development for the community.
+						Hirete stays free, open-source, and independent because companies choose to support the work behind it.
+						Their sponsorship helps fund hosting, maintenance, and continued development for the community.
 					</Trans>
 				</p>
 
@@ -51,8 +51,7 @@ export const Sponsors = ({ show }: SponsorsProps) => {
 
 				<p className="mt-8 max-w-2xl text-muted-foreground leading-relaxed">
 					<Trans>
-						Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the
-						project, email{" "}
+						Atlas Cloud supports Hirete as a project sponsor. If your company would like to sponsor the project, email{" "}
 						<a
 							href={`mailto:${sponsorshipEmail}`}
 							className="font-medium text-foreground underline-offset-4 hover:underline"

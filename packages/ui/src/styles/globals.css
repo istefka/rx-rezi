@@ -11,12 +11,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Hirete brand palette (placeholder theme)
+ * ----------------------------------------
+ * primary  = navy  #1A2B4A -> oklch(0.2914 0.0613 261.58)
+ * accent   = teal  #2EC4B6 -> oklch(0.7423 0.1214 185.36)
+ * In dark mode the navy primary is lightened to #2E4A7A -> oklch(0.4115 0.0877 260.56)
+ * for accessible contrast against the dark background.
+ * Neutral surfaces (background/card/muted/border) are intentionally left grayscale.
+ */
 :root {
 	--radius: 0.3rem;
 	--font-body: "IBM Plex Sans Variable", sans-serif;
 
-	--accent-foreground: oklch(0.205 0 0);
-	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.2914 0.0613 261.58);
+	--accent: oklch(0.7423 0.1214 185.36);
 	--background: oklch(1 0 0);
 	--border: oklch(0.922 0 0);
 	--card-foreground: oklch(0.145 0 0);
@@ -34,8 +43,8 @@
 	--popover-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
 	--primary-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.205 0 0);
-	--ring: oklch(0.708 0 0);
+	--primary: oklch(0.2914 0.0613 261.58);
+	--ring: oklch(0.2914 0.0613 261.58);
 	--secondary-foreground: oklch(0.205 0 0);
 	--secondary: oklch(0.97 0 0);
 	--sidebar-accent-foreground: oklch(0.205 0 0);
@@ -43,14 +52,14 @@
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-foreground: oklch(0.145 0 0);
 	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.205 0 0);
-	--sidebar-ring: oklch(0.708 0 0);
+	--sidebar-primary: oklch(0.2914 0.0613 261.58);
+	--sidebar-ring: oklch(0.2914 0.0613 261.58);
 	--sidebar: oklch(0.985 0 0);
 }
 
 .dark {
-	--accent-foreground: oklch(0.985 0 0);
-	--accent: oklch(0.269 0 0);
+	--accent-foreground: oklch(0.2914 0.0613 261.58);
+	--accent: oklch(0.7423 0.1214 185.36);
 	--background: oklch(0.145 0 0);
 	--border: oklch(1 0 0 / 10%);
 	--card-foreground: oklch(0.985 0 0);
@@ -67,9 +76,9 @@
 	--muted: oklch(0.269 0 0);
 	--popover-foreground: oklch(0.985 0 0);
 	--popover: oklch(0.205 0 0);
-	--primary-foreground: oklch(0.205 0 0);
-	--primary: oklch(0.922 0 0);
-	--ring: oklch(0.75 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.4115 0.0877 260.56);
+	--ring: oklch(0.7423 0.1214 185.36);
 	--secondary-foreground: oklch(0.985 0 0);
 	--secondary: oklch(0.269 0 0);
 	--sidebar-accent-foreground: oklch(0.985 0 0);
@@ -77,8 +86,8 @@
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-foreground: oklch(0.985 0 0);
 	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.488 0.243 264.376);
-	--sidebar-ring: oklch(0.75 0 0);
+	--sidebar-primary: oklch(0.4115 0.0877 260.56);
+	--sidebar-ring: oklch(0.7423 0.1214 185.36);
 	--sidebar: oklch(0.205 0 0);
 }
 
