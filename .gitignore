@@ -76,3 +76,4 @@ Thumbs.db
 # Local uploads / generated data
 uploads/
 .data/
+/data/
