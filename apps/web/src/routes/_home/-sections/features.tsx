@@ -1,199 +1,102 @@
 import type { Icon } from "@phosphor-icons/react";
-import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
-import {
-	CloudArrowUpIcon,
-	CodeSimpleIcon,
-	CurrencyDollarIcon,
-	DatabaseIcon,
-	DotsThreeIcon,
-	FilePdfIcon,
-	FilesIcon,
-	GithubLogoIcon,
-	GlobeIcon,
-	KeyIcon,
-	LayoutIcon,
-	LockSimpleIcon,
-	PaletteIcon,
-	ProhibitIcon,
-	ShieldCheckIcon,
-	TranslateIcon,
-} from "@phosphor-icons/react";
+import { CheckCircleIcon, FilePdfIcon, GlobeIcon, KeyIcon, SparkleIcon, TranslateIcon } from "@phosphor-icons/react";
 import { m } from "motion/react";
-import { cn } from "@reactive-resume/utils/style";
 
 type Feature = {
-	id: string;
 	icon: Icon;
-	title: string;
-	description: string;
+	title: React.ReactNode;
+	description: React.ReactNode;
 };
 
-type FeatureCardProps = Feature;
-
-const getFeatures = (): Feature[] => [
+const features: Feature[] = [
 	{
-		id: "free",
-		icon: CurrencyDollarIcon,
-		title: t`Free`,
-		description: t`Completely free, forever, no hidden costs.`,
+		icon: CheckCircleIcon,
+		title: <Trans>Beat the ATS</Trans>,
+		description: (
+			<Trans>
+				Clean, parseable layouts and a live readability score help your CV get past applicant-tracking systems and in
+				front of a human.
+			</Trans>
+		),
 	},
 	{
-		id: "open-source",
-		icon: GithubLogoIcon,
-		title: t`Open Source`,
-		description: t`By the community, for the community.`,
-	},
-	{
-		id: "no-ads",
-		icon: ProhibitIcon,
-		title: t`No Advertising, No Tracking`,
-		description: t`For a secure and distraction-free experience.`,
-	},
-	{
-		id: "instant-generation",
-		icon: FilePdfIcon,
-		title: t`Instant Generation`,
-		description: t`Export your resume to PDF instantly, without any waiting or delays.`,
-	},
-	{
-		id: "data-security",
-		icon: DatabaseIcon,
-		title: t`Data Security`,
-		description: t`Your data is secure, and never shared or sold to anyone.`,
-	},
-	{
-		id: "self-host",
-		icon: CloudArrowUpIcon,
-		title: t`Self-Host with Docker`,
-		description: t`You also have the option to deploy on your own servers using the Docker image.`,
-	},
-	{
-		id: "languages",
-		icon: TranslateIcon,
-		title: t`Multilingual`,
-		description: t`Available in multiple languages. If you would like to contribute, check out Crowdin.`,
-	},
-	{
-		id: "auth",
-		icon: KeyIcon,
-		title: t`One-Click Sign-In`,
-		description: t`Sign in with GitHub, Google or a custom OAuth provider.`,
-	},
-	{
-		id: "2fa",
-		icon: ShieldCheckIcon,
-		title: t`Passkeys & 2FA`,
-		description: t`Enhance the security of your account with additional layers of protection.`,
-	},
-	{
-		id: "unlimited-resumes",
-		icon: FilesIcon,
-		title: t`Unlimited Resumes`,
-		description: t`Create as many resumes as you want, without limits.`,
-	},
-	{
-		id: "design",
-		icon: PaletteIcon,
-		title: t`Flexibility`,
-		description: t`Personalize your resume with any colors, fonts or designs, and make it your own.`,
-	},
-	{
-		id: "templates",
-		icon: LayoutIcon,
-		title: t`12+ Templates`,
-		description: t`Beautiful templates to choose from, with more on the way.`,
-	},
-	{
-		id: "public",
 		icon: GlobeIcon,
-		title: t`Shareable Links`,
-		description: t`Share your resume with a public URL, and let others view it.`,
+		title: <Trans>European by design</Trans>,
+		description: (
+			<Trans>
+				A4 formatting, optional photo, and Europass-friendly structure — matched to what recruiters across the EU expect
+				to see.
+			</Trans>
+		),
 	},
 	{
-		id: "password-protection",
-		icon: LockSimpleIcon,
-		title: t`Password Protection`,
-		description: t`Protect your resume with a password, and let only people with the password view it.`,
+		icon: SparkleIcon,
+		title: <Trans>Smart suggestions</Trans>,
+		description: (
+			<Trans>
+				Turn rough notes into sharp, achievement-led bullet points, and tailor your CV to each role in a couple of
+				clicks.
+			</Trans>
+		),
 	},
 	{
-		id: "api-access",
-		icon: CodeSimpleIcon,
-		title: t`API Access`,
-		description: t`Access your resumes and data programmatically using the API.`,
+		icon: TranslateIcon,
+		title: <Trans>30+ languages</Trans>,
+		description: <Trans>Build and switch your CV between languages to apply confidently anywhere in Europe.</Trans>,
 	},
 	{
-		id: "more",
-		icon: DotsThreeIcon,
-		title: t`And many more...`,
-		description: t`New features are constantly being added and improved, so be sure to check back often.`,
+		icon: FilePdfIcon,
+		title: <Trans>Export anywhere</Trans>,
+		description: (
+			<Trans>Download pixel-perfect PDF or editable DOCX, or share a live link recruiters can open instantly.</Trans>
+		),
+	},
+	{
+		icon: KeyIcon,
+		title: <Trans>Your data, your control</Trans>,
+		description: (
+			<Trans>
+				GDPR-compliant and EU-hosted. Export everything or delete your account and data permanently, anytime.
+			</Trans>
+		),
 	},
 ];
 
-function FeatureCard({ icon: Icon, title, description }: FeatureCardProps) {
-	return (
-		<m.div
-			className={cn(
-				"group relative flex min-h-48 flex-col gap-4 overflow-hidden border-b bg-background p-6 transition-[background-color] duration-300 will-change-[transform,opacity]",
-				"not-nth-[2n]:border-r xl:not-nth-[4n]:border-r",
-				"hover:bg-secondary/30",
-			)}
-			initial={{ opacity: 0, y: 16 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, amount: 0.1 }}
-			transition={{ duration: 0.35, ease: "easeOut" }}
-		>
-			{/* Hover gradient overlay */}
-			<div
-				aria-hidden="true"
-				className="pointer-events-none absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-			/>
-
-			{/* Icon */}
-			<div aria-hidden="true" className="relative">
-				<div className="inline-flex rounded-md bg-primary/5 p-2.5 text-foreground transition-colors group-hover:bg-primary/10 group-hover:text-primary">
-					<Icon size={24} weight="thin" />
-				</div>
-			</div>
-
-			{/* Content */}
-			<div className="relative flex flex-col gap-y-1.5">
-				<h3 className="font-semibold text-base tracking-tight transition-colors group-hover:text-primary">{title}</h3>
-				<p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-			</div>
-		</m.div>
-	);
-}
-
 export function Features() {
-	const features = getFeatures();
-
 	return (
-		<section id="features">
-			{/* Header */}
+		<section id="features" className="p-4 md:p-8 xl:py-16">
 			<m.div
-				className="space-y-4 p-4 will-change-[transform,opacity] md:p-8 xl:py-16"
+				className="mx-auto max-w-2xl text-center will-change-[transform,opacity]"
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
 				transition={{ duration: 0.45 }}
 			>
 				<h2 className="font-semibold text-2xl tracking-tight md:text-4xl xl:text-5xl">
-					<Trans>Features</Trans>
+					<Trans>Everything you need to land the interview</Trans>
 				</h2>
-
-				<p className="max-w-2xl text-muted-foreground leading-relaxed">
-					<Trans>
-						Everything you need to create, customize, and share professional resumes. Built with privacy in mind,
-						powered by open source, and completely free forever.
-					</Trans>
+				<p className="mt-4 text-muted-foreground leading-relaxed">
+					<Trans>A focused toolkit that gets your CV noticed for the right reasons.</Trans>
 				</p>
 			</m.div>
 
-			{/* Features Grid */}
-			<div className="grid grid-cols-1 xs:grid-cols-2 border-t xl:grid-cols-4">
-				{features.map((feature) => (
-					<FeatureCard key={feature.id} {...feature} />
+			<div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				{features.map((feature, index) => (
+					<m.div
+						key={index}
+						className="group rounded-xl border bg-card p-6 transition-colors will-change-[transform,opacity] hover:border-primary/40"
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.4, delay: Math.min(0.2, index * 0.05) }}
+					>
+						<div className="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+							<feature.icon aria-hidden="true" className="size-5" weight="duotone" />
+						</div>
+						<h3 className="mt-4 font-medium text-lg tracking-tight">{feature.title}</h3>
+						<p className="mt-2 text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+					</m.div>
 				))}
 			</div>
 		</section>

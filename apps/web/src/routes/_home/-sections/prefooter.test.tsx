@@ -1,14 +1,25 @@
 // @vitest-environment happy-dom
 
 import { render, screen } from "@testing-library/react";
-import { beforeAll, describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
-import { Prefooter } from "./prefooter";
 
-beforeAll(() => {
-	i18n.loadAndActivate({ locale: "en", messages: {} });
-});
+type LinkProps = React.PropsWithChildren<{
+	to: string;
+}>;
+
+vi.mock("@tanstack/react-router", () => ({
+	Link: ({ children, to, ...rest }: LinkProps) => (
+		<a href={typeof to === "string" ? to : "#"} {...rest}>
+			{children}
+		</a>
+	),
+}));
+
+i18n.loadAndActivate({ locale: "en", messages: {} });
+
+const { Prefooter } = await import("./prefooter");
 
 const renderPrefooter = () =>
 	render(
@@ -18,14 +29,20 @@ const renderPrefooter = () =>
 	);
 
 describe("Prefooter", () => {
-	it("renders the community tagline as a heading", () => {
+	it("renders the call-to-action heading", () => {
 		renderPrefooter();
-		expect(screen.getByText("By the community, for the community.")).toBeInTheDocument();
+		expect(screen.getByText("Ready to get hired?")).toBeInTheDocument();
 	});
 
-	it("renders the community-thanks paragraph", () => {
+	it("renders the call-to-action paragraph", () => {
 		renderPrefooter();
-		expect(screen.getByText(/vibrant community/)).toBeInTheDocument();
+		expect(screen.getByText(/clears the filters/)).toBeInTheDocument();
+	});
+
+	it("renders a dashboard call-to-action link", () => {
+		const { container } = renderPrefooter();
+		const cta = Array.from(container.querySelectorAll("a")).find((a) => a.getAttribute("href") === "/dashboard");
+		expect(cta).toBeDefined();
 	});
 
 	it("renders the decorative TextMaskEffect (svg)", () => {

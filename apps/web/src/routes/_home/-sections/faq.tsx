@@ -2,10 +2,7 @@ import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { m } from "motion/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@reactive-resume/ui/components/accordion";
-import { buttonVariants } from "@reactive-resume/ui/components/button";
 import { cn } from "@reactive-resume/utils/style";
-
-const crowdinUrl = "https://hirete.eu";
 
 type FAQItemData = {
 	question: string;
@@ -14,49 +11,28 @@ type FAQItemData = {
 
 const getFaqItems = (): FAQItemData[] => [
 	{
-		question: t`Is Hirete really free?`,
-		answer: t`Yes! Hirete is completely free to use, with no hidden costs, premium tiers, or subscription fees. It's open-source and will always remain free.`,
+		question: t`What makes a CV "ATS-friendly"?`,
+		answer: t`Applicant-tracking systems scan your CV before a person does. Hirete uses clean, single-column-friendly layouts, standard section headings, and selectable text so the systems can read your CV correctly — and shows you a live score as you edit.`,
 	},
 	{
-		question: t`How is my data protected?`,
-		answer: t`Your data is stored securely and is never shared with third parties. You can also self-host Hirete on your own servers for complete control over your data.`,
+		question: t`Is Hirete suitable for the European job market?`,
+		answer: t`Yes. Hirete supports A4 formatting, an optional photo, and a Europass-friendly structure, so your CV matches what recruiters and employers across the EU expect.`,
 	},
 	{
-		question: t`Can I export my resume to PDF?`,
-		answer: t`Absolutely! You can export your resume to PDF with a single click. The exported PDF maintains all your formatting and styling perfectly.`,
+		question: t`Can I export my CV to PDF and DOCX?`,
+		answer: t`Absolutely. Export a pixel-perfect PDF or an editable Microsoft Word (DOCX) file with one click, or share a live link that recruiters can open in the browser.`,
 	},
 	{
-		question: t`Is Hirete available in multiple languages?`,
-		answer: (
-			<Trans>
-				Yes, Hirete is available in multiple languages. You can choose your preferred language in the settings page, or
-				using the language switcher in the top right corner. If you don't see your language, or you would like to
-				improve the existing translations, you can{" "}
-				<a
-					href={crowdinUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					className={buttonVariants({ variant: "link", className: "h-auto px-0!" })}
-				>
-					contribute to the translations on Crowdin
-					<span className="sr-only">
-						<Trans comment="Screen reader hint indicating the FAQ translation contribution link opens in a new browser tab">
-							{" "}
-							(opens in new tab)
-						</Trans>
-					</span>
-				</a>
-				.
-			</Trans>
-		),
+		question: t`Is my data private and GDPR-compliant?`,
+		answer: t`Your data is stored securely on EU infrastructure and is never sold or shared with third parties. You can export everything or permanently delete your account and data at any time.`,
 	},
 	{
-		question: t`What makes Hirete different from other resume builders?`,
-		answer: t`Hirete is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall.`,
+		question: t`In how many languages can I build my CV?`,
+		answer: t`Hirete supports 30+ interface languages, and you can build and switch your CV between languages to apply confidently anywhere in Europe.`,
 	},
 	{
-		question: t`How do I share my resume?`,
-		answer: t`You can share your resume via a unique public URL, protect it with a password, or download it as a PDF to share directly. The choice is yours!`,
+		question: t`How much does Hirete cost?`,
+		answer: t`You can create and export your first CV for free. Paid plans for advanced tailoring and multiple CVs are on the way — you'll always know exactly what's included before you upgrade.`,
 	},
 ];
 
